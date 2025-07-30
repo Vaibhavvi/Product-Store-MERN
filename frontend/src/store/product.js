@@ -1,6 +1,8 @@
 // store/product.js
 import { create } from 'zustand';
 
+const BASE_URL = 'https://product-store-mern-backend.onrender.com/api'; // ✅ your deployed backend
+
 export const useProductStore = create((set) => ({
   products: [],
 
@@ -8,7 +10,7 @@ export const useProductStore = create((set) => ({
 
   fetchProducts: async () => {
     try {
-      const res = await fetch('/api/products');
+      const res = await fetch(`${BASE_URL}/products`);
       const data = await res.json();
       if (data.success) {
         set({ products: data.data });
@@ -24,7 +26,7 @@ export const useProductStore = create((set) => ({
     }
 
     try {
-      const res = await fetch('/api/products', {
+      const res = await fetch(`${BASE_URL}/products`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newProduct),
@@ -47,7 +49,7 @@ export const useProductStore = create((set) => ({
 
   deleteProduct: async (id) => {
     try {
-      const res = await fetch(`/api/products/${id}`, {
+      const res = await fetch(`${BASE_URL}/products/${id}`, {
         method: 'DELETE',
       });
 
@@ -68,7 +70,7 @@ export const useProductStore = create((set) => ({
 
   updateProduct: async (id, updatedData) => {
     try {
-      const res = await fetch(`/api/products/${id}`, {
+      const res = await fetch(`${BASE_URL}/products/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedData),
