@@ -82,7 +82,7 @@ export default function ProductList() {
 
   return (
     <Box maxW="7xl" mx="auto" mt={10} px={4}>
-      <Heading textAlign="center" mb={6} color="white">
+      <Heading textAlign="center" mb={6} color="black">
         All Products
       </Heading>
 
